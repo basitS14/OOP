@@ -1,25 +1,28 @@
 class Atm:
     def __init__(self):
-        self.pin = ''
-        self.balance = 0
+        self.__pin = ''            #' __ 'used for hiding it from the user
+        self.__balance = 0
 
-        self.menu()
+        self.__menu()
 
     def check_pin(self ):
         temp = input("Enter your pin")
-        if temp == self.pin:
+        if temp == self.__pin:
             return 1
         else:
             return 0
     def set_pin(self):
-        self.pin = input("Set your pin: ")
-        print("PIN is set !!!")
+        self.__pin = input("Set your pin: ")
+        if type(self.__pin)== str:
+            print("PIN is set !!!")
+        else:
+            pritn("Not allowed")
 
     def deposit(self):
         correct  = self.check_pin()
         amount = int(input("Enter the amount:"))
         if correct:
-            self.balance = self.balance + amount
+            self.__balance = self.__balance + amount
         else:
             print("PIN is incorrect ")
     
@@ -27,7 +30,7 @@ class Atm:
         correct  = self.check_pin()
         amount = int(input("Enter the amount:"))
         if correct:
-            self.balance = self.balance - amount
+            self.__balance = self.__balance - amount
             print('Operation successful')
         else:
             print("PIN is incorrect ")
@@ -35,13 +38,13 @@ class Atm:
     def check_balance(self):
         correct  = self.check_pin()
         if correct:
-            print("Your Balance is " , self.balance)
+            print("Your Balance is " , self.__balance)
         else:
             print("PIN is incorrect")
 
     
 
-    def menu(self):
+    def __menu(self):
         user_input = input('''
             1. Set pin
             2. deposit
