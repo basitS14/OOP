@@ -1,9 +1,22 @@
 class Atm:
+
+    __counter = 1                    # static / class variable
     def __init__(self):
         self.__pin = ''            #' __ 'used for hiding it from the user
         self.__balance = 0
-
+        Atm.__counter = Atm.__counter + 1 
         self.__menu()
+
+    @staticmethod
+    def get_counter():
+        return Atm.__counter
+
+    @staticmethod
+    def set_counter(new):
+        if type(new)== int:
+            Atm.__counter = new
+        else:
+            print("Invlaid Value")
 
     def check_pin(self ):
         temp = input("Enter your pin")
